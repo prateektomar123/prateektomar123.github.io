@@ -1,23 +1,265 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px Times; color: #eae96f; -webkit-text-stroke: #eae96f}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prateek Tomar - Game Developer Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --accent-color: #ff4500;
+            --card-bg: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #title-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            #title-section h1 {
+                margin: 0;
+                font-size: 2.5em;
+                font-weight: 300;
+            }
+
+        #profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #social-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+            #social-links a {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                transition: transform 0.3s;
+            }
+
+                #social-links a:hover {
+                    transform: scale(1.2);
+                }
+
+            #social-links img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+        #description-section {
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        #info-section {
+            text-align: center;
+            padding: 40px 0;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-links {
+            margin-top: 20px;
+        }
+
+            .project-links a {
+                display: inline-block;
+                color: var(--bg-color);
+                text-decoration: none;
+                margin: 10px;
+                padding: 10px 20px;
+                background-color: var(--accent-color);
+                border-radius: 5px;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+                .project-links a:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 4px 8px rgba(255, 69, 0, 0.5);
+                }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .project-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .project-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .project-item img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .project-item h3 {
+                margin: 15px;
+                font-size: 1.2em;
+                font-weight: 500;
+            }
+
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 180px;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            #theme-toggle:hover {
+                background-color: var(--text-color);
+                color: var(--bg-color);
+            }
+
+        .light-mode {
+            --bg-color: #f0f0f0;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+        }
+    </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;h1&gt;Hello World&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1">&lt;p&gt;I'm hosted with GitHub Pages.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+    <button id="theme-toggle">Toggle Theme</button>
+
+    <div id="social-links">
+        <a href="https://twitter.com/prateektomar" target="_blank"><img src="/api/placeholder/30/30" alt="Twitter"></a>
+        <a href="https://linkedin.com/in/prateektomar" target="_blank"><img src="/api/placeholder/30/30" alt="LinkedIn"></a>
+        <a href="https://github.com/prateektomar" target="_blank"><img src="/api/placeholder/30/30" alt="GitHub"></a>
+        <a href="https://instagram.com/prateektomar" target="_blank"><img src="/api/placeholder/30/30" alt="Instagram"></a>
+    </div>
+
+    <div id="title-section" class="section">
+        <h1>Prateek Tomar</h1>
+        <img id="profile-image" src="/api/placeholder/100/100" alt="Prateek Tomar">
+    </div>
+
+    <div id="description-section" class="section">
+        <p>Welcome to my game development portfolio! I'm Prateek Tomar, a passionate game developer with a knack for creating engaging and innovative gaming experiences. Here you'll find a collection of my best projects, each representing a unique adventure in the world of game design and development. Feel free to explore and play the games – your feedback is always appreciated!</p>
+    </div>
+
+    <div id="info-section" class="section">
+        <h2 id="current-title">Select a game to view details</h2>
+        <p id="current-description"></p>
+        <div class="project-links">
+            <a id="playable-link" href="#" target="_blank">Play Game</a>
+            <a id="github-link" href="#" target="_blank" style="display: none;">View on GitHub</a>
+        </div>
+    </div>
+
+    <div class="project-grid">
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('Cosmic Crusade', 'An epic space adventure game where players explore vast galaxies and engage in interstellar battles.', '', 'https://example.com/cosmic-crusade'); return false;">
+                <img src="/api/placeholder/280/200" alt="Cosmic Crusade">
+                <h3>Cosmic Crusade</h3>
+            </a>
+        </div>
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('Puzzle Dimension', 'A mind-bending puzzle game that challenges players with interdimensional conundrums.', 'https://github.com/prateektomar/puzzle-dimension', 'https://example.com/puzzle-dimension'); return false;">
+                <img src="/api/placeholder/280/200" alt="Puzzle Dimension">
+                <h3>Puzzle Dimension</h3>
+            </a>
+        </div>
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('Neon Racer', 'A high-octane racing game set in a futuristic cyberpunk city with customizable hover cars.', '', 'https://example.com/neon-racer'); return false;">
+                <img src="/api/placeholder/280/200" alt="Neon Racer">
+                <h3>Neon Racer</h3>
+            </a>
+        </div>
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('Mythic Quest', 'An action RPG inspired by ancient mythologies, featuring epic battles and legendary creatures.', 'https://github.com/prateektomar/mythic-quest', 'https://example.com/mythic-quest'); return false;">
+                <img src="/api/placeholder/280/200" alt="Mythic Quest">
+                <h3>Mythic Quest</h3>
+            </a>
+        </div>
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('Eco Tycoon', 'A strategy simulation game where players build and manage sustainable cities of the future.', '', 'https://example.com/eco-tycoon'); return false;">
+                <img src="/api/placeholder/280/200" alt="Eco Tycoon">
+                <h3>Eco Tycoon</h3>
+            </a>
+        </div>
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('Pixel Dungeon', 'A retro-style roguelike dungeon crawler with procedurally generated levels and pixel art graphics.', 'https://github.com/prateektomar/pixel-dungeon', 'https://example.com/pixel-dungeon'); return false;">
+                <img src="/api/placeholder/280/200" alt="Pixel Dungeon">
+                <h3>Pixel Dungeon</h3>
+            </a>
+        </div>
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('VR Escape', 'A virtual reality escape room game that transports players to mysterious and challenging environments.', '', 'https://example.com/vr-escape'); return false;">
+                <img src="/api/placeholder/280/200" alt="VR Escape">
+                <h3>VR Escape</h3>
+            </a>
+        </div>
+        <div class="project-item">
+            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
+                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
+                <h3>Rhythm Revolution</h3>
+            </a>
+        </div>
+    </div>
+
+    <script>function updateInfo(title, description, githubLink, playableLink) {
+            document.getElementById('current-title').textContent = title;
+            document.getElementById('current-description').textContent = description;
+            document.getElementById('playable-link').href = playableLink;
+
+            const githubLinkElement = document.getElementById('github-link');
+            if (githubLink) {
+                githubLinkElement.href = githubLink;
+                githubLinkElement.style.display = 'inline-block';
+            } else {
+                githubLinkElement.style.display = 'none';
+            }
+
+            document.getElementById('info-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+        });</script>
 </body>
 </html>
