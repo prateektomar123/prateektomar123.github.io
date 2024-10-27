@@ -3,306 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prateek Tomar - Game Developer Portfolio</title>
+    <title>Prateek Tomar - Unity Developer</title>
+    <link rel="icon" href="games.png" type="image/x-icon">
     <style>
         :root {
-            --bg-color: #1a1a1a;
-            --text-color: #ffffff;
-            --accent-color: #ff4500;
-            --card-bg: #2a2a2a;
+            --primary: #1a1a2e;
+            --secondary: #7928ca;
+            --accent: #0070f3;
+            --background: #0f0f1a;
+            --text: #ffffff;
+            --border: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(26, 26, 46, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: background-color 0.3s, color 0.3s;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(121, 40, 202, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(0, 112, 243, 0.1) 0%, transparent 50%);
         }
 
-        .section {
-            padding: 20px;
-            max-width: 1200px;
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 1rem;
         }
 
-        #title-section {
+        .floating-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 26, 0.8);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            padding: 0.5rem;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .social-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            color: var(--text);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            display: flex;
             align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-            #title-section h1 {
-                margin: 0;
-                font-size: 2.5em;
-                font-weight: 300;
-            }
-
-        #profile-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
+        .social-link:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
         }
 
-        #social-links {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+        .social-link img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: minmax(300px, 400px) 1fr;
+            gap: 2rem;
+            margin-top: 5rem;
+            min-height: calc(100vh - 6rem);
+        }
+
+        .intro-section {
+            position: sticky;
+            top: 5rem;
+            height: fit-content;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
             display: flex;
-            gap: 15px;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: fadeIn 0.5s ease-out;
         }
 
-            #social-links a {
-                display: inline-block;
-                width: 30px;
-                height: 30px;
-                transition: transform 0.3s;
-            }
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-                #social-links a:hover {
-                    transform: scale(1.2);
-                }
+        .role {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
 
-            #social-links img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-
-        #description-section {
-            text-align: center;
-            font-size: 1.1em;
+        .intro {
+            font-size: 1.1rem;
+            opacity: 0.8;
             line-height: 1.6;
         }
 
-        #info-section {
-            text-align: center;
-            padding: 40px 0;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .projects-section {
+            margin-bottom: 2rem;
         }
 
-        .project-links {
-            margin-top: 20px;
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-            .project-links a {
-                display: inline-block;
-                color: var(--bg-color);
-                text-decoration: none;
-                margin: 10px;
-                padding: 10px 20px;
-                background-color: var(--accent-color);
-                border-radius: 5px;
-                transition: transform 0.3s, box-shadow 0.3s;
-            }
-
-                .project-links a:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 4px 8px rgba(255, 69, 0, 0.5);
-                }
-
-        .project-grid {
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 20px;
+            gap: 2rem;
+            animation: slideUp 0.5s ease-out;
         }
 
-        .project-item {
-            background-color: var(--card-bg);
-            border-radius: 10px;
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 400px;
         }
 
-            .project-item:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-            }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
 
-            .project-item img {
-                width: 80%;
-                height: 80%;
-                /* object-fit: cover; */
-                align-self: center;
-            }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: var(--card-bg); 
+        }
 
-            .project-item h3 {
-                margin: 15px;
-                font-size: 1.2em;
-                font-weight: 500;
-            }
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;  /* Changed from cover to contain */
+            object-position: center;
+            background: var(--card-bg);  /* Added to match card background */
+        }
 
-        #theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 180px;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
+        .project-info {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-buttons {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .project-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            background: var(--secondary);
+            color: white;
             cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
         }
 
-            #theme-toggle:hover {
-                background-color: var(--text-color);
-                color: var(--bg-color);
+        .project-button:hover {
+            transform: translateY(-2px);
+            background: var(--accent);
+        }
+
+        .project-button.source {
+            background: transparent;
+            border: 1px solid var(--secondary);
+        }
+
+        .project-button.source:hover {
+            background: var(--secondary);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
             }
 
-        .light-mode {
-            --bg-color: #f0f0f0;
-            --text-color: #333333;
-            --card-bg: #ffffff;
+            .intro-section {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .floating-header {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- <button id="theme-toggle">Toggle Theme</button> -->
-
-    <div id="social-links">
-        <!-- <a href="https://twitter.com/prateektomar" target="_blank"><img src="/api/placeholder/30/30" alt="Twitter"></a> -->
-        <a href="https://linkedin.com/in/prateektomar" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
-        <a href="https://github.com/prateektomar" target="_blank"><img src="github.png" alt="GitHub"></a>
-        <!-- <a href="https://instagram.com/prateektomar" target="_blank"><img src="/api/placeholder/30/30" alt="Instagram"></a> -->
+    <div class="floating-header">
+        <a href="/resume" class="social-link">
+            <img src="resume.png" alt="Resume">
+            
+            Resume
+        </a>
+        <a href="https://github.com/your-username" class="social-link">
+            <img src="github.png" alt="GitHub">
+            GitHub
+        </a>
+        <a href="https://linkedin.com/in/your-profile" class="social-link">
+            <img src="linkedin.png" alt="LinkedIn">
+            LinkedIn
+        </a>
+        <a href="mailto:prateektomar005@gmail.com" class="social-link">
+            <img src="email.png" alt="Email">
+            Email
+        </a>
     </div>
 
-    <div id="title-section" class="section">
-        <h1>Prateek Tomar</h1>
-        <!-- <img id="profile-image" src="/api/placeholder/100/100" alt="Prateek Tomar"> -->
-    </div>
+    <div class="container">
+        <div class="main-content">
+            <section class="intro-section">
+                <h1 class="name">Prateek Tomar</h1>
+                <h2 class="role">Unity Developer</h2>
+                <p class="intro">I'm a Unity developer with 2 years of experience in creating immersive gaming experiences, specializing in game mechanics, AI systems, and performance optimization. Based in Portland, Oregon, I've worked on various projects ranging from indie games to commercial applications.</p>
+            </section>
+            
+            <div class="projects-section">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="abandonedlab.jpeg" alt="Platformer Game">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Platformer Game</h3>
+                            <p class="project-description">A classic platformer with unique power-ups and challenging enemies. Implemented core game mechanics and optimized performance.</p>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://play.platformer-game.com" class="project-button">Play Now</a>
+                            <a href="https://github.com/username/platformer" class="project-button source">View Source</a>
+                        </div>
+                    </article>
 
-    <div id="description-section" class="section">
-        <p>Welcome to my game development portfolio! I'm Prateek Tomar, a passionate game developer with a knack for creating engaging and innovative gaming experiences. Here you'll find a collection of my best projects, each representing a unique adventure in the world of game design and development. Feel free to explore and play the games – your feedback is always appreciated!</p>
-    </div>
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="/api/placeholder/400/320" alt="2D Shooter">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">2D Shooter</h3>
+                            <p class="project-description">An action-packed 2D shooter with cooperative gameplay. Developed AI systems and player mechanics.</p>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://play.shooter-game.com" class="project-button">Play Now</a>
+                            <a href="https://github.com/username/shooter" class="project-button source">View Source</a>
+                        </div>
+                    </article>
 
-    <div id="info-section" class="section">
-        <h2 id="current-title">Select a game to view details</h2>
-        <p id="current-description"></p>
-        <div class="project-links">
-            <a id="playable-link" href="#" target="_blank">Play Game</a>
-            <a id="github-link" href="#" target="_blank" style="display: none;">View on GitHub</a>
-        </div>
-    </div>
-
-    <div class="project-grid">
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Abandoned Lab', 'An epic space adventure game where players explore vast galaxies and engage in interstellar battles.', '', 'https://example.com/cosmic-crusade'); return false;">
-                <img src="abandonedlab.jpeg" alt="Abandoned Lab">
-                <h3>Cosmic Crusade</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Puzzle Dimension', 'A mind-bending puzzle game that challenges players with interdimensional conundrums.', 'https://github.com/prateektomar/puzzle-dimension', 'https://example.com/puzzle-dimension'); return false;">
-                <img src="/api/placeholder/280/200" alt="Puzzle Dimension">
-                <h3>Puzzle Dimension</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Neon Racer', 'A high-octane racing game set in a futuristic cyberpunk city with customizable hover cars.', '', 'https://example.com/neon-racer'); return false;">
-                <img src="/api/placeholder/280/200" alt="Neon Racer">
-                <h3>Neon Racer</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Mythic Quest', 'An action RPG inspired by ancient mythologies, featuring epic battles and legendary creatures.', 'https://github.com/prateektomar/mythic-quest', 'https://example.com/mythic-quest'); return false;">
-                <img src="/api/placeholder/280/200" alt="Mythic Quest">
-                <h3>Mythic Quest</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Eco Tycoon', 'A strategy simulation game where players build and manage sustainable cities of the future.', '', 'https://example.com/eco-tycoon'); return false;">
-                <img src="/api/placeholder/280/200" alt="Eco Tycoon">
-                <h3>Eco Tycoon</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Pixel Dungeon', 'A retro-style roguelike dungeon crawler with procedurally generated levels and pixel art graphics.', 'https://github.com/prateektomar/pixel-dungeon', 'https://example.com/pixel-dungeon'); return false;">
-                <img src="/api/placeholder/280/200" alt="Pixel Dungeon">
-                <h3>Pixel Dungeon</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('VR Escape', 'A virtual reality escape room game that transports players to mysterious and challenging environments.', '', 'https://example.com/vr-escape'); return false;">
-                <img src="/api/placeholder/280/200" alt="VR Escape">
-                <h3>VR Escape</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
-        </div>
-        <div class="project-item">
-            <a href="#" onclick="updateInfo('Rhythm Revolution', 'A dynamic music game that combines rhythm-based gameplay with stunning visual effects.', 'https://github.com/prateektomar/rhythm-revolution', 'https://example.com/rhythm-revolution'); return false;">
-                <img src="/api/placeholder/280/200" alt="Rhythm Revolution">
-                <h3>Rhythm Revolution</h3>
-            </a>
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="/api/placeholder/400/320" alt="Puzzle Game">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Puzzle Game</h3>
+                            <p class="project-description">A challenging puzzle game with engaging mechanics. Created innovative puzzle systems and level generation.</p>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://play.puzzle-game.com" class="project-button">Play Now</a>
+                            <a href="https://github.com/username/puzzle" class="project-button source">View Source</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>function updateInfo(title, description, githubLink, playableLink) {
-            document.getElementById('current-title').textContent = title;
-            document.getElementById('current-description').textContent = description;
-            document.getElementById('playable-link').href = playableLink;
-
-            const githubLinkElement = document.getElementById('github-link');
-            if (githubLink) {
-                githubLinkElement.href = githubLink;
-                githubLinkElement.style.display = 'inline-block';
-            } else {
-                githubLinkElement.style.display = 'none';
-            }
-
-            document.getElementById('info-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        document.getElementById('theme-toggle').addEventListener('click', function () {
-            document.body.classList.toggle('light-mode');
-        });</script>
 </body>
 </html>
