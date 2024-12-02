@@ -14,6 +14,7 @@
             --text: #ffffff;
             --border: rgba(255, 255, 255, 0.1);
             --card-bg: rgba(26, 26, 46, 0.4);
+            --modal-overlay: rgba(0, 0, 0, 0.8);
         }
 
         * {
@@ -27,9 +28,7 @@
             background: var(--background);
             color: var(--text);
             min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(121, 40, 202, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(0, 112, 243, 0.1) 0%, transparent 50%);
+            background-image: radial-gradient(circle at 10% 20%, rgba(121, 40, 202, 0.15) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(0, 112, 243, 0.1) 0%, transparent 50%);
         }
 
         .container {
@@ -65,15 +64,15 @@
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .social-link:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent);
-        }
+            .social-link:hover {
+                transform: translateY(-3px);
+                border-color: var(--accent);
+            }
 
-        .social-link img {
-            width: 20px;
-            height: 20px;
-        }
+            .social-link img {
+                width: 20px;
+                height: 20px;
+            }
 
         .main-content {
             display: grid;
@@ -148,26 +147,26 @@
             height: 400px;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
+            .project-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--accent);
+            }
 
         .project-image {
             width: 100%;
             height: 200px;
             position: relative;
             overflow: hidden;
-            background: var(--card-bg); 
+            background: var(--card-bg);
         }
 
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;  /* Changed from cover to contain */
-            object-position: center;
-            background: var(--card-bg);  /* Added to match card background */
-        }
+            .project-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center;
+                background: var(--card-bg);
+            }
 
         .project-info {
             padding: 1.5rem;
@@ -187,9 +186,10 @@
             line-height: 1.6;
             flex: 1;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            /*overflow: hidden;*/
+            overflow: hidden;
+            margin-bottom: 0.5rem;
         }
 
         .project-buttons {
@@ -213,23 +213,107 @@
             font-weight: 500;
         }
 
-        .project-button:hover {
-            transform: translateY(-2px);
-            background: var(--accent);
+            .project-button:hover {
+                transform: translateY(-2px);
+                background: var(--accent);
+            }
+
+            .project-button.source {
+                background: transparent;
+                border: 1px solid var(--secondary);
+            }
+
+                .project-button.source:hover {
+                    background: var(--secondary);
+                }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--modal-overlay);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
         }
 
-        .project-button.source {
+        .modal {
+            background: var(--primary);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            border: 1px solid var(--border);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-right: 2rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
             background: transparent;
-            border: 1px solid var(--secondary);
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
         }
 
-        .project-button.source:hover {
-            background: var(--secondary);
+            .modal-close:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+        .modal-content {
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
         }
+
+        .see-more-btn {
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+
+            .see-more-btn:hover {
+                color: var(--secondary);
+            }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
@@ -237,6 +321,19 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -263,6 +360,11 @@
             .name {
                 font-size: 2rem;
             }
+
+            .modal {
+                width: 95%;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -270,7 +372,6 @@
     <div class="floating-header">
         <a href="Prateek_CV.pdf" class="social-link">
             <img src="icons/resume.png" alt="Resume">
-            
             Resume
         </a>
         <a href="https://github.com/prateektomar123" class="social-link">
@@ -294,7 +395,7 @@
                 <h2 class="role">Game Developer</h2>
                 <p class="intro">I'm a Unity developer with nearly 2 years of experience based in Delhi, India, crafting engaging gaming experiences with a focus on storytelling, AI mechanics, and level design. I specialize in creating sophisticated AI systems, having developed diverse NPC behaviors from natural human simulations to complex combat mechanics. My games have demonstrated significant market success, with one WebGL title reaching 400,000 players and maintaining an 8/10 rating, while my personal Android project has garnered 5,000+ downloads with a 4.2 Play Store rating. I have a strong track record in performance optimization, successfully improving game performance from 10 FPS to 30 FPS across multiple projects. As a self-driven developer at Lipy Media, I independently manage complete game development cycles while collaborating effectively with UI designers and 3D modelers. I'm passionate about creating story-driven and multiplayer experiences, and I'm eager to tackle challenging projects in a growth-oriented environment. Currently open to remote opportunities and relocation, I bring both technical expertise and a proven ability to deliver engaging player experiences.</p>
             </section>
-            
+
             <div class="projects-section">
                 <h2 class="section-title">Projects -</h2>
                 <div class="projects-grid">
@@ -311,6 +412,7 @@
                             <a href="https://github.com/prateektomar123/2D-Platformer-Game_Outscal" class="project-button source">View Source</a>
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/snake2d.png" alt="Co-Op Snake 2D">
@@ -324,6 +426,7 @@
                             <a href="https://github.com/prateektomar123/Co-Op-Snake-2D" class="project-button source">View Source</a>
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/bikehunter.png" alt="Bike Ghost Hunter 2D">
@@ -333,10 +436,11 @@
                             <p class="project-description">Implemented 2D enemy AI movement, 2D player movement with state management, and a game manager to handle UI and game logic.</p>
                         </div>
                         <div class="project-buttons">
-                            <a href="https://outscal.com/prateektomar005/game/play-bike-ghost-hunter-2d-game" class="project-button">Play Now</a>
+                           <a href="https://outscal.com/prateektomar005/game/play-bike-ghost-hunter-2d-game" class="project-button">Play Now</a>
                             <a href="https://github.com/prateektomar123/BikeGhostHunters2D" class="project-button source">View Source</a>
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/pursUItrampage.jpg" alt="PursUIt Rampage">
@@ -347,9 +451,9 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://gamedistribution.com/games/pursUIt-rampage/" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/rescuerift.jpg" alt="Rescue Rift">
@@ -360,9 +464,9 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://www.y8.com/games/rescue_rift" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/zombieisland.jpg" alt="Zombie Island">
@@ -373,9 +477,9 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://gamedistribution.com/games/zombie-island-3d/" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/abandonedlab.png" alt="Abandoned Lab">
@@ -386,9 +490,9 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://gamedistribution.com/games/abandoned-lab/" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/highwaybusrush.jpg" alt="Highway Bus Rush">
@@ -399,9 +503,9 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://gamedistribution.com/games/highway-bus-rush/" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/skibidi.jpg" alt="Skibidi Toilet Mayhem">
@@ -412,9 +516,9 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://www.y8.com/games/skibidi_toilet_mayhem" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/societyfps.jpg" alt="Society FPS">
@@ -425,9 +529,9 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://gamedistribution.com/games/society-fps/" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
+
                     <article class="project-card">
                         <div class="project-image">
                             <img src="GDS/glacierrush.jpg" alt="Glacier Rush">
@@ -438,15 +542,77 @@
                         </div>
                         <div class="project-buttons">
                             <a href="https://gamedistribution.com/games/glacier-rush/" class="project-button">Play Now</a>
-                            <!-- <a href="https://github.com/username/platformer" class="project-button source">View Source</a> -->
                         </div>
                     </article>
-
-
                 </div>
-
             </div>
         </div>
     </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title"></h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to initialize the project cards with "See More" buttons
+        function initializeProjectCards() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                const description = card.querySelector('.project-description');
+                const title = card.querySelector('.project-title').textContent;
+                const fullDescription = description.textContent;
+                
+                // Add "See More" button
+                const seeMoreBtn = document.createElement('button');
+                seeMoreBtn.className = 'see-more-btn';
+                seeMoreBtn.textContent = 'See More';
+                seeMoreBtn.onclick = () => openModal(title, fullDescription);
+                
+                // Insert button after description
+                description.parentNode.insertBefore(seeMoreBtn, description.nextSibling);
+            });
+        }
+
+        // Function to open the modal
+        function openModal(title, content) {
+            const modal = document.getElementById('modalOverlay');
+            const modalTitle = modal.querySelector('.modal-title');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            modalTitle.textContent = title;
+            modalContent.textContent = content;
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            
+            // Close modal when clicking outside
+            modal.onclick = (e) => {
+                if (e.target === modal) closeModal();
+            };
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('modalOverlay');
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Initialize when the page loads
+        document.addEventListener('DOMContentLoaded', initializeProjectCards);
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
 </body>
 </html>
