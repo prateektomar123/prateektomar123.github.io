@@ -306,6 +306,82 @@
                 color: var(--secondary);
             }
 
+        /* Skills Section Styles */
+        .skills-section {
+            margin-bottom: 3rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+            .skill-category:hover {
+                transform: translateY(-5px);
+                border-color: var(--accent);
+            }
+
+        .skill-category-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 112, 243, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        /* Contact Modal Styles */
+        .contact-modal {
+            max-width: 500px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+            .contact-item img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .contact-item a {
+                color: var(--text);
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+
+                .contact-item a:hover {
+                    color: var(--accent);
+                }
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -382,9 +458,9 @@
             <img src="icons/linkedin.png" alt="LinkedIn">
             LinkedIn
         </a>
-        <a href="mailto:prateektomar005@gmail.com" class="social-link">
-            <img src="icons/email.png" alt="Email">
-            Email
+        <a class="social-link" onclick="openContactModal()">
+            <img src="icons/contact.png" alt="Contact">
+            Contact Me
         </a>
     </div>
 
@@ -395,159 +471,228 @@
                 <h2 class="role">Game Developer</h2>
                 <p class="intro">I'm a Unity developer with nearly 2 years of experience based in Delhi, India, crafting engaging gaming experiences with a focus on storytelling, AI mechanics, and level design. I specialize in creating sophisticated AI systems, having developed diverse NPC behaviors from natural human simulations to complex combat mechanics. My games have demonstrated significant market success, with one WebGL title reaching 400,000 players and maintaining an 8/10 rating, while my personal Android project has garnered 5,000+ downloads with a 4.2 Play Store rating. I have a strong track record in performance optimization, successfully improving game performance from 10 FPS to 30 FPS across multiple projects. As a self-driven developer at Lipy Media, I independently manage complete game development cycles while collaborating effectively with UI designers and 3D modelers. I'm passionate about creating story-driven and multiplayer experiences, and I'm eager to tackle challenging projects in a growth-oriented environment. Currently open to remote opportunities and relocation, I bring both technical expertise and a proven ability to deliver engaging player experiences.</p>
             </section>
+            <div class="content-section">
+                <section class="skills-section">
+                    <h2 class="section-title">Skills -</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">Game Development</h3>
+                            <div class="skill-items">
+                                <span class="skill-item">Unity 3D/2D</span>
+                                <span class="skill-item">C#</span>
+                                <span class="skill-item">Game Design</span>
+                                <span class="skill-item">Level Design</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">Programming</h3>
+                            <div class="skill-items">
+                                <span class="skill-item">Object-Oriented Programming</span>
+                                <span class="skill-item">Design Patterns</span>
+                                <span class="skill-item">Algorithm Design</span>
+                                <span class="skill-item">Data Structures</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">Tools & Technologies</h3>
+                            <div class="skill-items">
+                                <span class="skill-item">Git</span>
+                                <span class="skill-item">Visual Studio</span>
+                                <span class="skill-item">Rider</span>
+                                <span class="skill-item">Jira</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">Soft Skills</h3>
+                            <div class="skill-items">
+                                <span class="skill-item">Problem Solving</span>
+                                <span class="skill-item">Team Collaboration</span>
+                                <span class="skill-item">Communication</span>
+                                <span class="skill-item">Time Management</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="modal-overlay" id="contactModalOverlay">
+                    <div class="modal contact-modal">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Contact Information</h3>
+                            <button class="modal-close" onclick="closeContactModal()">×</button>
+                        </div>
+                        <div class="modal-content">
+                            <div class="contact-info">
+                                <div class="contact-item">
+                                    <img src="icons/email.png" alt="Email">
+                                    <a href="mailto:prateektomar005@gmail.com">prateektomar005@gmail.com</a>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="icons/phone.png" alt="Phone">
+                                    <a href="tel:+YOUR_PHONE">+91 YOUR_PHONE_NUMBER</a>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="icons/location.png" alt="Location">
+                                    <span>Delhi, India</span>
+                                </div>
+                                <div class="contact-item">
+                                    <img src="icons/linkedin.png" alt="LinkedIn">
+                                    <a href="https://www.linkedin.com/in/prateek-tomar1/" target="_blank">linkedin.com/in/prateek-tomar1</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="projects-section">
+                    <h2 class="section-title">Projects -</h2>
+                    <div class="projects-grid">
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/mayhem.png" alt="Platformer Game">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Mayhem Platformer</h3>
+                                <p class="project-description">Implemented 2D Enemy AI movement, 2D player movement with state management, and a game manager to manage UI and game logic.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://outscal.com/prateektomar005/game/play-mayhem-platformer-1-game" class="project-button">Play Now</a>
+                                <a href="https://github.com/prateektomar123/2D-Platformer-Game_Outscal" class="project-button source">View Source</a>
+                            </div>
+                        </article>
 
-            <div class="projects-section">
-                <h2 class="section-title">Projects -</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/mayhem.png" alt="Platformer Game">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Mayhem Platformer</h3>
-                            <p class="project-description">Implemented 2D Enemy AI movement, 2D player movement with state management, and a game manager to manage UI and game logic.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://outscal.com/prateektomar005/game/play-mayhem-platformer-1-game" class="project-button">Play Now</a>
-                            <a href="https://github.com/prateektomar123/2D-Platformer-Game_Outscal" class="project-button source">View Source</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/snake2d.png" alt="Co-Op Snake 2D">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Co-Op Snake 2D</h3>
+                                <p class="project-description">Implemented snake movement with parts, added different power-ups, and created a game manager for overall management.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://outscal.com/prateektomar005/game/play-co-op-snake-7-game" class="project-button">Play Now</a>
+                                <a href="https://github.com/prateektomar123/Co-Op-Snake-2D" class="project-button source">View Source</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/snake2d.png" alt="Co-Op Snake 2D">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Co-Op Snake 2D</h3>
-                            <p class="project-description">Implemented snake movement with parts, added different power-ups, and created a game manager for overall management.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://outscal.com/prateektomar005/game/play-co-op-snake-7-game" class="project-button">Play Now</a>
-                            <a href="https://github.com/prateektomar123/Co-Op-Snake-2D" class="project-button source">View Source</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/bikehunter.png" alt="Bike Ghost Hunter 2D">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Bike Ghost Hunter 2D</h3>
+                                <p class="project-description">Implemented 2D enemy AI movement, 2D player movement with state management, and a game manager to handle UI and game logic.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://outscal.com/prateektomar005/game/play-bike-ghost-hunter-2d-game" class="project-button">Play Now</a>
+                                <a href="https://github.com/prateektomar123/BikeGhostHunters2D" class="project-button source">View Source</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/bikehunter.png" alt="Bike Ghost Hunter 2D">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Bike Ghost Hunter 2D</h3>
-                            <p class="project-description">Implemented 2D enemy AI movement, 2D player movement with state management, and a game manager to handle UI and game logic.</p>
-                        </div>
-                        <div class="project-buttons">
-                           <a href="https://outscal.com/prateektomar005/game/play-bike-ghost-hunter-2d-game" class="project-button">Play Now</a>
-                            <a href="https://github.com/prateektomar123/BikeGhostHunters2D" class="project-button source">View Source</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/pursUItrampage.jpg" alt="PursUIt Rampage">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">PursUIt Rampage</h3>
+                                <p class="project-description">An endless bus game, worked on bus controls, road spawning using object pooling, managed 200 levels in 5 scenes with different modes and environments.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://gamedistribution.com/games/pursUIt-rampage/" class="project-button">Play Now</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/pursUItrampage.jpg" alt="PursUIt Rampage">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">PursUIt Rampage</h3>
-                            <p class="project-description">An endless bus game, worked on bus controls, road spawning using object pooling, managed 200 levels in 5 scenes with different modes and environments.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://gamedistribution.com/games/pursUIt-rampage/" class="project-button">Play Now</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/rescuerift.jpg" alt="Rescue Rift">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Rescue Rift</h3>
+                                <p class="project-description">A first-person shooting game, created custom hostage AIs with different states (Idle, Flee, Being Hostage), implemented a mission manager.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://www.y8.com/games/rescue_rift" class="project-button">Play Now</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/rescuerift.jpg" alt="Rescue Rift">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Rescue Rift</h3>
-                            <p class="project-description">A first-person shooting game, created custom hostage AIs with different states (Idle, Flee, Being Hostage), implemented a mission manager.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://www.y8.com/games/rescue_rift" class="project-button">Play Now</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/zombieisland.jpg" alt="Zombie Island">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Zombie Island</h3>
+                                <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://gamedistribution.com/games/zombie-island-3d/" class="project-button">Play Now</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/zombieisland.jpg" alt="Zombie Island">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Zombie Island</h3>
-                            <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://gamedistribution.com/games/zombie-island-3d/" class="project-button">Play Now</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/abandonedlab.png" alt="Abandoned Lab">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Abandoned Lab</h3>
+                                <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://gamedistribution.com/games/abandoned-lab/" class="project-button">Play Now</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/abandonedlab.png" alt="Abandoned Lab">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Abandoned Lab</h3>
-                            <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://gamedistribution.com/games/abandoned-lab/" class="project-button">Play Now</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/highwaybusrush.jpg" alt="Highway Bus Rush">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Highway Bus Rush</h3>
+                                <p class="project-description">A classic platformer with unique power-ups and challenging enemies. Implemented core game mechanics and optimized performance.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://gamedistribution.com/games/highway-bus-rush/" class="project-button">Play Now</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/highwaybusrush.jpg" alt="Highway Bus Rush">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Highway Bus Rush</h3>
-                            <p class="project-description">A classic platformer with unique power-ups and challenging enemies. Implemented core game mechanics and optimized performance.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://gamedistribution.com/games/highway-bus-rush/" class="project-button">Play Now</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/skibidi.jpg" alt="Skibidi Toilet Mayhem">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Skibidi Toilet Mayhem</h3>
+                                <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://www.y8.com/games/skibidi_toilet_mayhem" class="project-button">Play Now</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/skibidi.jpg" alt="Skibidi Toilet Mayhem">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Skibidi Toilet Mayhem</h3>
-                            <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://www.y8.com/games/skibidi_toilet_mayhem" class="project-button">Play Now</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/societyfps.jpg" alt="Society FPS">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Society FPS</h3>
+                                <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://gamedistribution.com/games/society-fps/" class="project-button">Play Now</a>
+                            </div>
+                        </article>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/societyfps.jpg" alt="Society FPS">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Society FPS</h3>
-                            <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://gamedistribution.com/games/society-fps/" class="project-button">Play Now</a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="GDS/glacierrush.jpg" alt="Glacier Rush">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">Glacier Rush</h3>
-                            <p class="project-description">A classic snow bike endless game with unique power-ups and challenging levels. Implemented core game mechanics, shop system, and optimized performance.</p>
-                        </div>
-                        <div class="project-buttons">
-                            <a href="https://gamedistribution.com/games/glacier-rush/" class="project-button">Play Now</a>
-                        </div>
-                    </article>
+                        <article class="project-card">
+                            <div class="project-image">
+                                <img src="GDS/glacierrush.jpg" alt="Glacier Rush">
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">Glacier Rush</h3>
+                                <p class="project-description">A classic snow bike endless game with unique power-ups and challenging levels. Implemented core game mechanics, shop system, and optimized performance.</p>
+                            </div>
+                            <div class="project-buttons">
+                                <a href="https://gamedistribution.com/games/glacier-rush/" class="project-button">Play Now</a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Modal Overlay -->
     <div class="modal-overlay" id="modalOverlay">
@@ -612,6 +757,30 @@
         // Close modal with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
+        });
+
+        function openContactModal() {
+            const modal = document.getElementById('contactModalOverlay');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+
+            modal.onclick = (e) => {
+                if (e.target === modal) closeContactModal();
+            };
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModalOverlay');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Update the existing event listener to handle both modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeContactModal();
+            }
         });
     </script>
 </body>
