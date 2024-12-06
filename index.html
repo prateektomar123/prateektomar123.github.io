@@ -132,88 +132,91 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            animation: slideUp 0.5s ease-out;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
         }
 
         .project-card {
-            background: var(--card-bg);
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 1rem;
-            border: 1px solid var(--border);
             overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            height: 400px;
+            backdrop-filter: blur(10px);
         }
 
             .project-card:hover {
                 transform: translateY(-5px);
-                border-color: var(--accent);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                border-color: #3b82f6;
             }
 
         .project-image {
             width: 100%;
             height: 200px;
-            position: relative;
             overflow: hidden;
-            background: var(--card-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
             .project-image img {
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
-                object-position: center;
-                background: var(--card-bg);
+                object-fit: cover;
+                transition: transform 0.3s ease;
             }
-
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
         .project-info {
             padding: 1.5rem;
-            flex: 1;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
+            gap: 0.75rem;
         }
 
         .project-title {
-            font-size: 1.4rem;
-            color: var(--accent);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #3b82f6;
             margin-bottom: 0.5rem;
         }
 
         .project-description {
+            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
-            flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .project-buttons {
-            padding: 0 1.5rem 1.5rem 1.5rem;
             display: flex;
             gap: 1rem;
-            justify-content: center;
+            padding: 0 1.5rem 1.5rem;
         }
 
         .project-button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            border: none;
-            background: var(--secondary);
-            color: white;
-            cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.2s ease;
             flex: 1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
             text-align: center;
             text-decoration: none;
             font-weight: 500;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
+            .project-button:first-child {
+                background: #f97316;
+                color: white;
+            }
 
+                .project-button:first-child:hover {
+                    background: #ea580c;
+                    transform: translateY(-2px);
+                }
             .project-button:hover {
                 transform: translateY(-2px);
                 background: var(--accent);
@@ -221,28 +224,34 @@
 
             .project-button.source {
                 background: transparent;
-                border: 1px solid var(--secondary);
+                border: 1px solid #f97316;
+                color: #f97316;
             }
 
                 .project-button.source:hover {
-                    background: var(--secondary);
+                    background: rgba(249, 115, 22, 0.1);
+                    transform: translateY(-2px);
                 }
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 0.5rem;
+            margin-top: auto;
+            margin-bottom: 1rem;
         }
 
         .project-tag {
-            background: var(--tag-bg);
-            color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
             padding: 0.25rem 0.75rem;
             border-radius: 1rem;
             font-size: 0.8rem;
             border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: background-color 0.2s ease;
         }
-
+            .project-tag:hover {
+                background: rgba(59, 130, 246, 0.2);
+            }
         .modal-overlay {
             display: none;
             position: fixed;
@@ -588,8 +597,9 @@
                                 <p class="project-description">Implemented snake movement with parts, added different power-ups, and created a game manager for overall management.</p>
                                 <div class="project-tags">
                                     <span class="project-tag">Unity 2D</span>
-                                    <span class="project-tag">AI Movement</span>
-                                    <span class="project-tag">State Management</span>
+                                    <span class="project-tag">Power-ups</span>
+                                    <span class="project-tag">Co-op Gameplay</span>
+                                    <span class="project-tag">Game Management</span>
                                 </div>
                             </div>
                             <div class="project-buttons">
@@ -607,8 +617,9 @@
                                 <p class="project-description">Implemented 2D enemy AI movement, 2D player movement with state management, and a game manager to handle UI and game logic.</p>
                                 <div class="project-tags">
                                     <span class="project-tag">Unity 2D</span>
-                                    <span class="project-tag">AI Movement</span>
+                                    <span class="project-tag">Enemy AI</span>
                                     <span class="project-tag">State Management</span>
+                                    <span class="project-tag">UI Systems</span>
                                 </div>
                             </div>
                             <div class="project-buttons">
@@ -625,9 +636,10 @@
                                 <h3 class="project-title">PursUIt Rampage</h3>
                                 <p class="project-description">An endless bus game, worked on bus controls, road spawning using object pooling, managed 200 levels in 5 scenes with different modes and environments.</p>
                                 <div class="project-tags">
-                                    <span class="project-tag">Unity 2D</span>
-                                    <span class="project-tag">AI Movement</span>
-                                    <span class="project-tag">State Management</span>
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">Object Pooling</span>
+                                    <span class="project-tag">Level Design</span>
+                                    <span class="project-tag">Vehicle Controls</span>
                                 </div>
                             </div>
                             <div class="project-buttons">
@@ -643,9 +655,10 @@
                                 <h3 class="project-title">Rescue Rift</h3>
                                 <p class="project-description">A first-person shooting game, created custom hostage AIs with different states (Idle, Flee, Being Hostage), implemented a mission manager.</p>
                                 <div class="project-tags">
-                                    <span class="project-tag">Unity 2D</span>
-                                    <span class="project-tag">AI Movement</span>
-                                    <span class="project-tag">State Management</span>
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">AI States</span>
+                                    <span class="project-tag">Mission System</span>
                                 </div>
                             </div>
                             <div class="project-buttons">
@@ -661,9 +674,10 @@
                                 <h3 class="project-title">Zombie Island</h3>
                                 <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
                                 <div class="project-tags">
-                                    <span class="project-tag">Unity 2D</span>
-                                    <span class="project-tag">AI Movement</span>
-                                    <span class="project-tag">State Management</span>
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">Enemy AI</span>
+                                    <span class="project-tag">Patrol System</span>
                                 </div>
                             </div>
                             <div class="project-buttons">
@@ -679,9 +693,10 @@
                                 <h3 class="project-title">Abandoned Lab</h3>
                                 <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
                                 <div class="project-tags">
-                                    <span class="project-tag">Unity 2D</span>
-                                    <span class="project-tag">AI Movement</span>
-                                    <span class="project-tag">State Management</span>
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">AI Behavior</span>
+                                    <span class="project-tag">Mission System</span>
                                 </div>
                             </div>
                             <div class="project-buttons">
@@ -696,6 +711,12 @@
                             <div class="project-info">
                                 <h3 class="project-title">Highway Bus Rush</h3>
                                 <p class="project-description">A classic platformer with unique power-ups and challenging enemies. Implemented core game mechanics and optimized performance.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">Power-ups</span>
+                                    <span class="project-tag">Performance Optimization</span>
+                                    <span class="project-tag">Game Mechanics</span>
+                                </div>
                             </div>
                             <div class="project-buttons">
                                 <a href="https://gamedistribution.com/games/highway-bus-rush/" class="project-button">Play Now</a>
@@ -709,6 +730,12 @@
                             <div class="project-info">
                                 <h3 class="project-title">Skibidi Toilet Mayhem</h3>
                                 <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">Enemy AI</span>
+                                    <span class="project-tag">Mission System</span>
+                                </div>
                             </div>
                             <div class="project-buttons">
                                 <a href="https://www.y8.com/games/skibidi_toilet_mayhem" class="project-button">Play Now</a>
@@ -722,6 +749,12 @@
                             <div class="project-info">
                                 <h3 class="project-title">Society FPS</h3>
                                 <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">AI States</span>
+                                    <span class="project-tag">Combat System</span>
+                                </div>
                             </div>
                             <div class="project-buttons">
                                 <a href="https://gamedistribution.com/games/society-fps/" class="project-button">Play Now</a>
@@ -735,6 +768,12 @@
                             <div class="project-info">
                                 <h3 class="project-title">Glacier Rush</h3>
                                 <p class="project-description">A classic snow bike endless game with unique power-ups and challenging levels. Implemented core game mechanics, shop system, and optimized performance.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">Endless Runner</span>
+                                    <span class="project-tag">Shop System</span>
+                                    <span class="project-tag">Performance Optimization</span>
+                                </div>
                             </div>
                             <div class="project-buttons">
                                 <a href="https://gamedistribution.com/games/glacier-rush/" class="project-button">Play Now</a>
