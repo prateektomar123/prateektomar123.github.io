@@ -5,1013 +5,833 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prateek Tomar - Game Developer</title>
     <link rel="icon" href="icons/games.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #1e1e2e;
-            --secondary: #f97316; /* Vibrant orange */
-            --accent: #3b82f6; /* Bright blue */
-            --background: #0f172a; /* Dark blue background */
-            --text: #e2e8f0;
-            --border: rgba(226, 232, 240, 0.1);
-            --card-bg: rgba(30, 30, 46, 0.4);
-            --modal-overlay: rgba(0, 0, 0, 0.8);
-            --tag-bg: rgba(59, 130, 246, 0.1);
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --accent-color: #4a90e2;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --card-bg: #242424;
+            --transition-speed: 0.3s;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            background: var(--background);
-            color: var(--text);
-            min-height: 100vh;
-            background-image: radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.15) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        .floating-header {
+        /* Header Styles */
+        header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(15, 15, 26, 0.8);
-            display: flex;
-            justify-content: center;
-            padding: 0.5rem;
-            gap: 1rem;
-            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
             z-index: 1000;
-            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .social-link {
-            padding: 0.5rem 1rem;
-            border-radius: 0.75rem;
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+        }
+
+        .header-link {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: var(--text);
-            background: var(--card-bg);
-            border: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: var(--transition-speed);
         }
 
-            .social-link:hover {
-                transform: translateY(-3px);
-                border-color: var(--accent);
+            .header-link:hover {
+                color: var(--text-primary);
+                transform: translateY(-2px);
             }
 
-            .social-link img {
-                width: 20px;
-                height: 20px;
-            }
-
-        .main-content {
+        /* Main Layout */
+        .container {
+            max-width: 1400px; /* Increase from 1200px */
+            margin: 5rem auto 2rem;
+            padding: 0 1rem;
             display: grid;
-            grid-template-columns: minmax(300px, 400px) 1fr;
+            grid-template-columns: minmax(400px, 500px) 1fr; /* Increase from 300px/400px */
             gap: 2rem;
-            margin-top: 5rem;
-            min-height: calc(100vh - 6rem);
+            padding: 0 2rem;
         }
 
+        /* Left Section */
         .intro-section {
-            position: sticky;
-            top: 5rem;
-            height: 600px; /* Fixed height for the about section */
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: 1rem;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            animation: fadeIn 0.5s ease-out;
-            overflow: hidden; /* Hide overflow content */
+            width: 100%; /* Add this */
+            max-width: 500px; /* Add this */
         }
 
         .name {
             font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
-        .role {
-            font-size: 1.5rem;
-            color: var(--accent);
+        .title {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
-        .intro {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            line-height: 1.6;
-            overflow-y: auto; /* Enable vertical scrolling */
-            padding-right: 1rem; /* Space for scrollbar */
+        .bio-container {
+            height: calc(100% - 8rem);
+            overflow-y: auto;
+            padding-right: 5rem;
         }
-            /* Add these new styles for the scrollbar */
-            .intro::-webkit-scrollbar {
-                width: 8px;
+
+            .bio-container::-webkit-scrollbar {
+                width: 4px;
             }
 
-            .intro::-webkit-scrollbar-track {
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 4px;
+            .bio-container::-webkit-scrollbar-thumb {
+                background: var(--accent-color);
+                border-radius: 2px;
             }
 
-            .intro::-webkit-scrollbar-thumb {
-                background: var(--accent);
-                border-radius: 4px;
-            }
-        .projects-section {
-            margin-bottom: 2rem;
+        /* Right Section */
+        .content-section {
+            width: 100%;
+            overflow: hidden;
         }
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
+
+        .panel {
+            background: var(--secondary-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 100%;
+            overflow-x: hidden;
+            margin-bottom: 2rem; /* Add space between panels */
+        }
+
+        .panel-header {
             padding: 1rem;
             background: var(--card-bg);
-            border-radius: 1rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-            transition: background-color 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-            .section-header:hover {
-                background: rgba(59, 130, 246, 0.1);
-            }
-        .section-content {
+
+        .panel-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
+            transition: max-height var(--transition-speed);
         }
 
-            .section-content.active {
-                max-height: 5000px; /* Large enough to contain all content */
-                transition: max-height 0.5s ease-in;
-            }
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            background: linear-gradient(45deg, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .panel.active .panel-content {
+            max-height: 2000px;
         }
 
-        .projects-grid {
+        /* Skills Section */
+        .skills-grid {
+            padding: 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+            .skill-category h3 {
+                margin-bottom: 0.8rem;
+            }
+
+        .skill-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
             gap: 1.5rem;
             padding: 1rem;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
         }
+
+            .projects-container::-webkit-scrollbar {
+                height: 8px;
+            }
+
+            .projects-container::-webkit-scrollbar-track {
+                background: var(--card-bg);
+                border-radius: 4px;
+            }
+
+            .projects-container::-webkit-scrollbar-thumb {
+                background: var(--accent-color);
+                border-radius: 4px;
+            }
+
+                .projects-container::-webkit-scrollbar-thumb:hover {
+                    background: #357abd;
+                }
 
         .project-card {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
+            flex: 0 0 350px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 1rem;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            backdrop-filter: blur(10px);
+            scroll-snap-align: start;
+            min-width: 300px; /* Add this */
+            max-width: 400px; /* Add this */
         }
-
-            .project-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-                border-color: #3b82f6;
-            }
 
         .project-image {
             width: 100%;
-            height: 200px;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            height: 180px;
+            object-fit: cover;
         }
 
-            .project-image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.3s ease;
-            }
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
-        }
         .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(15, 23, 42, 0.95);
-            padding: 1.5rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            height: auto;
-            max-height: 100%;
-            overflow-y: auto;
+            padding: 1rem;
         }
-        .project-card:hover .project-info {
-            transform: translateY(0);
-        }
+
         .project-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #3b82f6;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
 
         .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            position: relative;
+            cursor: pointer;
         }
 
-        .project-buttons {
-            display: flex;
-            gap: 1rem;
-            padding: 0 1.5rem 1.5rem;
-        }
-
-        .project-button {
-            flex: 1;
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 500;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-            .project-button:first-child {
-                background: #f97316;
-                color: white;
+            .project-description.truncated {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
 
-                .project-button:first-child:hover {
-                    background: #ea580c;
-                    transform: translateY(-2px);
-                }
-            .project-button:hover {
-                transform: translateY(-2px);
-                background: var(--accent);
-            }
-
-            .project-button.source {
-                background: transparent;
-                border: 1px solid #f97316;
-                color: #f97316;
-            }
-
-                .project-button.source:hover {
-                    background: rgba(249, 115, 22, 0.1);
-                    transform: translateY(-2px);
-                }
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: auto;
-            margin-bottom: 1rem;
-        }
-
-        .project-tag {
-            background: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
+        .see-more {
+            color: var(--accent-color);
             font-size: 0.8rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            transition: background-color 0.2s ease;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 1rem;
         }
-            .project-tag:hover {
-                background: rgba(59, 130, 246, 0.2);
-            }
-        .modal-overlay {
+
+        .description-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            z-index: 1001;
+            max-width: 90%;
+            width: 500px;
             display: none;
+        }
+
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--modal-overlay);
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
-            backdrop-filter: blur(5px);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal {
-            background: var(--primary);
-            border-radius: 1rem;
-            padding: 2rem;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            border: 1px solid var(--border);
-            animation: modalSlideIn 0.3s ease-out;
-        }
-
-        .modal-header {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            color: var(--accent);
-            margin-right: 2rem;
+            display: none;
         }
 
         .modal-close {
             position: absolute;
             top: 1rem;
             right: 1rem;
-            background: transparent;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
+            color: var(--text-secondary);
             cursor: pointer;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s ease;
+            padding: 0.5rem;
         }
 
-            .modal-close:hover {
-                background: rgba(255, 255, 255, 0.1);
-            }
-
-        .modal-content {
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .see-more-btn {
-            color: var(--accent);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 0;
-            text-decoration: underline;
-            transition: color 0.2s ease;
-        }
-
-            .see-more-btn:hover {
-                color: var(--secondary);
-            }
-
-        /* Skills Section Styles */
-        .skills-section {
-            margin-bottom: 3rem;
-        }
-        .skills-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            padding: 1rem;
+        /* Contact Panel Styles */
+        .contact-panel {
+            position: fixed;
+            top: 4rem;
+            right: 1rem;
             background: var(--card-bg);
-            border-radius: 1rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-        }
-            .skills-header h2 {
-                margin: 0;
-            }
-
-        .skills-toggle {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
-        }
-
-            .skills-toggle.active {
-                transform: rotate(180deg);
-            }
-
-        .skills-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-            .skills-content.active {
-                max-height: 2000px;
-                transition: max-height 0.5s ease-in;
-            }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            animation: slideUp 0.5s ease-out;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            border-radius: 1rem;
-            border: 1px solid var(--border);
             padding: 1.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-            .skill-category:hover {
-                transform: translateY(-5px);
-                border-color: var(--accent);
-            }
-
-        .skill-category-title {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .skill-item {
-            background: rgba(0, 112, 243, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            border: 1px solid var(--border);
-        }
-
-        /* Contact Modal Styles */
-        .contact-modal {
-            max-width: 500px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            border-radius: 12px;
+            z-index: 999;
+            width: 400px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: var(--secondary-bg);
+            border-radius: 8px;
+            position: relative;
         }
 
-            .contact-item img {
-                width: 24px;
-                height: 24px;
+            .contact-item i {
+                color: var(--accent-color);
+                font-size: 1.2rem;
             }
 
-            .contact-item a {
-                color: var(--text);
-                text-decoration: none;
-                transition: color 0.2s ease;
-            }
-
-                .contact-item a:hover {
-                    color: var(--accent);
-                }
-
-        .dropdown-arrow {
-            width: 24px;
-            height: 24px;
-            transition: transform 0.3s ease;
+        .copy-btn {
+            position: absolute;
+            right: 0.8rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.2rem;
+            transition: var(--transition-speed);
         }
 
-            .dropdown-arrow.active {
-                transform: rotate(180deg);
+            .copy-btn:hover {
+                color: var(--accent-color);
             }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+        .copy-feedback {
+            position: absolute;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            right: 0;
+            top: -2rem;
+            opacity: 0;
+            transition: opacity var(--transition-speed);
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .project-tag {
+            background: rgba(74, 144, 226, 0.2);
+            color: var(--accent-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
 
+        .download-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition-speed);
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
         @media (max-width: 1024px) {
-            .main-content {
+            .container {
                 grid-template-columns: 1fr;
             }
 
             .intro-section {
-                position: relative;
-                top: 0;
+                max-width: 100%;
+                position: static;
+                height: auto;
+                margin-bottom: 2rem;
+            }
+
+            .bio-container {
+                height: auto;
+                max-height: 300px;
+            }
+
+            .header-content {
+                justify-content: center;
             }
         }
 
-        @media (max-width: 768px) {
-            .floating-header {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
+        @media (max-width: 480px) {
             .name {
                 font-size: 2rem;
             }
 
-            .modal {
-                width: 95%;
-                padding: 1.5rem;
+            .projects-container {
+                padding: 0.5rem;
+            }
+
+            .project-card {
+                flex: 0 0 280px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-header">
-        <a href="Prateek_CV.pdf" class="social-link">
-            <img src="icons/resume.png" alt="Resume">
-            Resume
-        </a>
-        <a href="https://github.com/prateektomar123" class="social-link">
-            <img src="icons/github.png" alt="GitHub">
-            GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/prateek-tomar1/" class="social-link">
-            <img src="icons/linkedin.png" alt="LinkedIn">
-            LinkedIn
-        </a>
-        <a class="social-link" onclick="openContactModal()">
-            <img src="icons/contact.png" alt="Contact">
-            Contact Me
-        </a>
-    </div>
+    <header>
+        <div class="header-content">
+            <a href="Prateek_CV.pdf" class="header-link">
+                <i class="fas fa-file-alt"></i>
+                <span>Resume</span>
+            </a>
+            <a href="https://github.com/prateektomar123" class="header-link">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/prateek-tomar1/" class="header-link">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="#" class="header-link">
+                <i class="fas fa-address-card"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+    </header>
 
-    <div class="container">
-        <div class="main-content">
-            <section class="intro-section">
-                <h1 class="name">Prateek Tomar</h1>
-                <h2 class="role">Game Developer</h2>
-                <p class="intro">I'm a Unity developer with nearly 2 years of experience based in Delhi, India, crafting engaging gaming experiences with a focus on storytelling, AI mechanics, and level design. I specialize in creating sophisticated AI systems, having developed diverse NPC behaviors from natural human simulations to complex combat mechanics. My games have demonstrated significant market success, with one WebGL title reaching 400,000 players and maintaining an 8/10 rating, while my personal Android project has garnered 5,000+ downloads with a 4.2 Play Store rating. I have a strong track record in performance optimization, successfully improving game performance from 10 FPS to 30 FPS across multiple projects. As a self-driven developer at Lipy Media, I independently manage complete game development cycles while collaborating effectively with UI designers and 3D modelers. I'm passionate about creating story-driven and multiplayer experiences, and I'm eager to tackle challenging projects in a growth-oriented environment. Currently open to remote opportunities and relocation, I bring both technical expertise and a proven ability to deliver engaging player experiences.</p>
-            </section>
-            <div class="content-section">
-                <section class="skills-section">
-                    <div class="section-header" onclick="toggleSection('skills')">
-                        <!--<div class="skills-header" onclick="toggleSkills()">-->
-                        <h2 class="section-title">Skills -</h2>
-                        <svg class="dropdown-arrow" id="skills-arrow" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M7 10l5 5 5-5z" />
-                        </svg>
+    <main class="container">
+        <section class="intro-section">
+            <h1 class="name">Prateek Tomar</h1>
+            <div class="title">Game Developer</div>
+            <div class="bio-container">
+                <p>I'm a Unity developer with nearly 2 years of experience based in Delhi, India, crafting engaging gaming experiences with a focus on <span style="color: lightblue; font-weight: bold;">Storytelling</span>, <span style="color: lightblue; font-weight: bold;">AI mechanics</span>, and <span style="color: lightblue; font-weight: bold;">level design</span>.</p>
+                <br>
+                <p>I specialize in creating sophisticated AI systems, having developed diverse NPC behaviors from natural human simulations to complex combat mechanics. My games have demonstrated significant market success, with one WebGL title reaching 400,000 players and maintaining an 8/10 rating, while my personal Android project has garnered 5,000+ downloads with a 4.2 Play Store rating.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="panel active" id="skills-panel">
+                <div class="panel-header">
+                    <h2>Skills</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="panel-content">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Programming</h3>
+                            <span class="skill-badge">Object-Oriented Programming</span>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Tools & Technologies</h3>
+                            <span class="skill-badge">Git</span>
+                            <span class="skill-badge">Visual Studio</span>
+                            <span class="skill-badge">Rider</span>
+                        </div>
                     </div>
-                    <div class="section-content" id="skills-content">
-                        <div class="skills-grid">
-                            <div class="skill-category">
-                                <h3 class="skill-category-title">Game Development</h3>
-                                <div class="skill-items">
-                                    <span class="skill-item">Unity 3D/2D</span>
-                                    <span class="skill-item">C#</span>
-                                    <span class="skill-item">Game Design</span>
-                                    <span class="skill-item">Level Design</span>
-                                </div>
-                            </div>
-                            <div class="skill-category">
-                                <h3 class="skill-category-title">Programming</h3>
-                                <div class="skill-items">
-                                    <span class="skill-item">Object-Oriented Programming</span>
-                                    <!--<span class="skill-item">Design Patterns</span>
-                                <span class="skill-item">Algorithm Design</span>
-                                <span class="skill-item">Data Structures</span>-->
-                                </div>
-                            </div>
-                            <div class="skill-category">
-                                <h3 class="skill-category-title">Tools & Technologies</h3>
-                                <div class="skill-items">
-                                    <span class="skill-item">Git</span>
-                                    <span class="skill-item">Visual Studio</span>
-                                    <span class="skill-item">Rider</span>
+                </div>
+            </div>
 
+            <div class="panel active" id="projects-panel">
+                <div class="panel-header">
+                    <h2>Projects</h2>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="panel-content">
+                    <div class="projects-container">
+                        <div class="project-card">
+                            <img src="GDS/mayhem.png" alt="Mayhem Platformer" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Mayhem Platformer</h3>
+                                <p class="project-description truncated">Implemented 2D Enemy AI movement, 2D player movement with state management, and a game manager to manage UI and game logic.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 2D</span>
+                                    <span class="project-tag">AI Movement</span>
+                                    <span class="project-tag">State Management</span>
                                 </div>
-                            </div>
-                            <div class="skill-category">
-                                <h3 class="skill-category-title">Soft Skills</h3>
-                                <div class="skill-items">
-                                    <span class="skill-item">Problem Solving</span>
-                                    <span class="skill-item">Team Collaboration</span>
-                                    <span class="skill-item">Communication</span>
-                                    <span class="skill-item">Time Management</span>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://outscal.com/prateektomar005/game/play-mayhem-platformer-1-game'">Play Now</button>
+                                    <button class="btn btn-secondary" onclick="window.location.href='https://github.com/prateektomar123/2D-Platformer-Game_Outscal'">View Source</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <div class="modal-overlay" id="contactModalOverlay">
-                    <div class="modal contact-modal">
-                        <div class="modal-header">
-                            <h3 class="modal-title">Contact Information</h3>
-                            <button class="modal-close" onclick="closeContactModal()">×</button>
+
+                        <div class="project-card">
+                            <img src="GDS/snake2d.png" alt="Co-Op Snake 2D" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Co-Op Snake 2D</h3>
+                                <p class="project-description truncated">Implemented snake movement with parts, added different power-ups, and created a game manager for overall management.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 2D</span>
+                                    <span class="project-tag">Power-ups</span>
+                                    <span class="project-tag">Co-op Gameplay</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://outscal.com/prateektomar005/game/play-co-op-snake-7-game'">Play Now</button>
+                                    <button class="btn btn-secondary" onclick="window.location.href='https://github.com/prateektomar123/Co-Op-Snake-2D'">View Source</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="modal-content">
-                            <div class="contact-info">
-                                <div class="contact-item">
-                                    <img src="icons/email.png" alt="Email">
-                                    <a href="mailto:prateektomar005@gmail.com">prateektomar005@gmail.com</a>
+
+                        <!-- Project 3 -->
+                        <div class="project-card">
+                            <img src="GDS/bikehunter.png" alt="Bike Ghost Hunter 2D" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Bike Ghost Hunter 2D</h3>
+                                <p class="project-description truncated">Implemented 2D enemy AI movement, 2D player movement with state management, and a game manager to handle UI and game logic.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 2D</span>
+                                    <span class="project-tag">Enemy AI</span>
+                                    <span class="project-tag">State Management</span>
+                                    <span class="project-tag">UI Systems</span>
                                 </div>
-                                <div class="contact-item">
-                                    <img src="icons/phone.png" alt="Phone">
-                                    <a href="tel:+YOUR_PHONE">+91 9958802812</a>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://outscal.com/prateektomar005/game/play-bike-ghost-hunter-2d-game'">Play Now</button>
+                                    <button class="btn btn-secondary" onclick="window.location.href='https://github.com/prateektomar123/BikeGhostHunters2D'">View Source</button>
                                 </div>
-                                <!--<div class="contact-item">
-                                <img src="icons/location.png" alt="Location">
-                                <span>Delhi, India</span>
-                            </div>-->
-                                <div class="contact-item">
-                                    <img src="icons/linkedin.png" alt="LinkedIn">
-                                    <a href="https://www.linkedin.com/in/prateek-tomar1/" target="_blank">linkedin.com/in/prateek-tomar1</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="project-card">
+                            <img src="GDS/pursUItrampage.jpg" alt="PursUIt Rampage" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">PursUIt Rampage</h3>
+                                <p class="project-description truncated">An endless bus game, worked on bus controls, road spawning using object pooling, managed 200 levels in 5 scenes with different modes and environments.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">Object Pooling</span>
+                                    <span class="project-tag">Level Design</span>
+                                    <span class="project-tag">Vehicle Controls</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/pursUIt-rampage/'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 5 -->
+                        <div class="project-card">
+                            <img src="GDS/rescuerift.jpg" alt="Rescue Rift" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Rescue Rift</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom hostage AIs with different states (Idle, Flee, Being Hostage), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">AI States</span>
+                                    <span class="project-tag">Mission System</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://www.y8.com/games/rescue_rift'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 6 -->
+                        <div class="project-card">
+                            <img src="GDS/zombieisland.jpg" alt="Zombie Island" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Zombie Island</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">Enemy AI</span>
+                                    <span class="project-tag">Patrol System</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/zombie-island-3d/'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 7 -->
+                        <div class="project-card">
+                            <img src="GDS/abandonedlab.png" alt="Abandoned Lab" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Abandoned Lab</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">AI Behavior</span>
+                                    <span class="project-tag">Mission System</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/abandoned-lab/'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 8 -->
+                        <div class="project-card">
+                            <img src="GDS/highwaybusrush.jpg" alt="Highway Bus Rush" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Highway Bus Rush</h3>
+                                <p class="project-description truncated">A classic platformer with unique power-ups and challenging enemies. Implemented core game mechanics and optimized performance.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">Power-ups</span>
+                                    <span class="project-tag">Performance Optimization</span>
+                                    <span class="project-tag">Game Mechanics</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/highway-bus-rush/'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 9 -->
+                        <div class="project-card">
+                            <img src="GDS/skibidi.jpg" alt="Skibidi Toilet Mayhem" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Skibidi Toilet Mayhem</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">Enemy AI</span>
+                                    <span class="project-tag">Mission System</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://www.y8.com/games/skibidi_toilet_mayhem'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 10 -->
+                        <div class="project-card">
+                            <img src="GDS/societyfps.jpg" alt="Society FPS" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Society FPS</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">AI States</span>
+                                    <span class="project-tag">Combat System</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/society-fps/'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 11 -->
+                        <div class="project-card">
+                            <img src="GDS/glacierrush.jpg" alt="Glacier Rush" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Glacier Rush</h3>
+                                <p class="project-description truncated">A classic snow bike endless game with unique power-ups and challenging levels. Implemented core game mechanics, shop system, and optimized performance.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">Endless Runner</span>
+                                    <span class="project-tag">Shop System</span>
+                                    <span class="project-tag">Performance Optimization</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/glacier-rush/'">Play Now</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <section class="projects-section">
-                    <div class="section-header" onclick="toggleSection('projects')">
-                        <h2 class="section-title">Projects -</h2>
-                        <svg class="dropdown-arrow" id="projects-arrow" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M7 10l5 5 5-5z" />
-                        </svg>
-                    </div>
-                    <div class="section-content" id="projects-content">
-                        <div class="projects-grid">
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/mayhem.png" alt="Platformer Game">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Mayhem Platformer</h3>
-                                    <p class="project-description">Implemented 2D Enemy AI movement, 2D player movement with state management, and a game manager to manage UI and game logic.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 2D</span>
-                                        <span class="project-tag">AI Movement</span>
-                                        <span class="project-tag">State Management</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://outscal.com/prateektomar005/game/play-mayhem-platformer-1-game" class="project-button">Play Now</a>
-                                    <a href="https://github.com/prateektomar123/2D-Platformer-Game_Outscal" class="project-button source">View Source</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/snake2d.png" alt="Co-Op Snake 2D">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Co-Op Snake 2D</h3>
-                                    <p class="project-description">Implemented snake movement with parts, added different power-ups, and created a game manager for overall management.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 2D</span>
-                                        <span class="project-tag">Power-ups</span>
-                                        <span class="project-tag">Co-op Gameplay</span>
-                                        <span class="project-tag">Game Management</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://outscal.com/prateektomar005/game/play-co-op-snake-7-game" class="project-button">Play Now</a>
-                                    <a href="https://github.com/prateektomar123/Co-Op-Snake-2D" class="project-button source">View Source</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/bikehunter.png" alt="Bike Ghost Hunter 2D">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Bike Ghost Hunter 2D</h3>
-                                    <p class="project-description">Implemented 2D enemy AI movement, 2D player movement with state management, and a game manager to handle UI and game logic.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 2D</span>
-                                        <span class="project-tag">Enemy AI</span>
-                                        <span class="project-tag">State Management</span>
-                                        <span class="project-tag">UI Systems</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://outscal.com/prateektomar005/game/play-bike-ghost-hunter-2d-game" class="project-button">Play Now</a>
-                                    <a href="https://github.com/prateektomar123/BikeGhostHunters2D" class="project-button source">View Source</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/pursUItrampage.jpg" alt="PursUIt Rampage">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">PursUIt Rampage</h3>
-                                    <p class="project-description">An endless bus game, worked on bus controls, road spawning using object pooling, managed 200 levels in 5 scenes with different modes and environments.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">Object Pooling</span>
-                                        <span class="project-tag">Level Design</span>
-                                        <span class="project-tag">Vehicle Controls</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://gamedistribution.com/games/pursUIt-rampage/" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/rescuerift.jpg" alt="Rescue Rift">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Rescue Rift</h3>
-                                    <p class="project-description">A first-person shooting game, created custom hostage AIs with different states (Idle, Flee, Being Hostage), implemented a mission manager.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">FPS</span>
-                                        <span class="project-tag">AI States</span>
-                                        <span class="project-tag">Mission System</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://www.y8.com/games/rescue_rift" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/zombieisland.jpg" alt="Zombie Island">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Zombie Island</h3>
-                                    <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">FPS</span>
-                                        <span class="project-tag">Enemy AI</span>
-                                        <span class="project-tag">Patrol System</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://gamedistribution.com/games/zombie-island-3d/" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/abandonedlab.png" alt="Abandoned Lab">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Abandoned Lab</h3>
-                                    <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">FPS</span>
-                                        <span class="project-tag">AI Behavior</span>
-                                        <span class="project-tag">Mission System</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://gamedistribution.com/games/abandoned-lab/" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/highwaybusrush.jpg" alt="Highway Bus Rush">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Highway Bus Rush</h3>
-                                    <p class="project-description">A classic platformer with unique power-ups and challenging enemies. Implemented core game mechanics and optimized performance.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">Power-ups</span>
-                                        <span class="project-tag">Performance Optimization</span>
-                                        <span class="project-tag">Game Mechanics</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://gamedistribution.com/games/highway-bus-rush/" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/skibidi.jpg" alt="Skibidi Toilet Mayhem">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Skibidi Toilet Mayhem</h3>
-                                    <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">FPS</span>
-                                        <span class="project-tag">Enemy AI</span>
-                                        <span class="project-tag">Mission System</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://www.y8.com/games/skibidi_toilet_mayhem" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/societyfps.jpg" alt="Society FPS">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Society FPS</h3>
-                                    <p class="project-description">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">FPS</span>
-                                        <span class="project-tag">AI States</span>
-                                        <span class="project-tag">Combat System</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://gamedistribution.com/games/society-fps/" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-
-                            <article class="project-card">
-                                <div class="project-image">
-                                    <img src="GDS/glacierrush.jpg" alt="Glacier Rush">
-                                </div>
-                                <div class="project-info">
-                                    <h3 class="project-title">Glacier Rush</h3>
-                                    <p class="project-description">A classic snow bike endless game with unique power-ups and challenging levels. Implemented core game mechanics, shop system, and optimized performance.</p>
-                                    <div class="project-tags">
-                                        <span class="project-tag">Unity 3D</span>
-                                        <span class="project-tag">Endless Runner</span>
-                                        <span class="project-tag">Shop System</span>
-                                        <span class="project-tag">Performance Optimization</span>
-                                    </div>
-                                </div>
-                                <div class="project-buttons">
-                                    <a href="https://gamedistribution.com/games/glacier-rush/" class="project-button">Play Now</a>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
+            </div>
         </section>
-            </div>
+    </main>
+
+    <!-- Description Modal -->
+    <div class="modal-overlay"></div>
+    <div class="description-modal">
+        <i class="fas fa-times modal-close"></i>
+        <h3 class="project-title"></h3>
+        <p class="full-description"></p>
+    </div>
+
+    <!-- Contact Panel -->
+    <div class="contact-panel">
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>prateektomar005@gmail.com</span>
+            <button class="copy-btn" data-copy="prateektomar005@gmail.com">
+                <i class="far fa-copy"></i>
+            </button>
+            <span class="copy-feedback">Copied!</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+91 9958802812</span>
+            <button class="copy-btn" data-copy="+91 9958802812">
+                <i class="far fa-copy"></i>
+            </button>
+            <span class="copy-feedback">Copied!</span>
         </div>
     </div>
 
-    <!-- Modal Overlay -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title"></h3>
-                <button class="modal-close" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-content"></div>
-        </div>
-    </div>
+    <script>// Panel Toggle Functionality
+        document.querySelectorAll('.panel-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const panel = header.parentElement;
+                panel.classList.toggle('active');
 
-    <script>
-        // Function to initialize the project cards with "See More" buttons
-        function initializeProjectCards() {
-            const projectCards = document.querySelectorAll('.project-card');
-            
-            projectCards.forEach(card => {
-                const description = card.querySelector('.project-description');
-                const title = card.querySelector('.project-title').textContent;
-                const fullDescription = description.textContent;
-                
-                // Add "See More" button
-                const seeMoreBtn = document.createElement('button');
-                seeMoreBtn.className = 'see-more-btn';
-                seeMoreBtn.textContent = 'See More';
-                seeMoreBtn.onclick = () => openModal(title, fullDescription);
-                
-                // Insert button after description
-                description.parentNode.insertBefore(seeMoreBtn, description.nextSibling);
+                const icon = header.querySelector('i');
+                icon.style.transform = panel.classList.contains('active')
+                    ? 'rotate(180deg)'
+                    : 'rotate(0deg)';
             });
-        }
-        function toggleSkills() {
-            const content = document.querySelector('.skills-content');
-            const arrow = document.querySelector('.skills-toggle');
-
-            content.classList.toggle('active');
-            arrow.classList.toggle('active');
-        }
-
-        function toggleSection(sectionId) {
-            const content = document.getElementById(`${sectionId}-content`);
-            const arrow = document.getElementById(`${sectionId}-arrow`);
-
-            content.classList.toggle('active');
-            arrow.classList.toggle('active');
-        }
-        // Function to open the modal
-        function openModal(title, content) {
-            const modal = document.getElementById('modalOverlay');
-            const modalTitle = modal.querySelector('.modal-title');
-            const modalContent = modal.querySelector('.modal-content');
-            
-            modalTitle.textContent = title;
-            modalContent.textContent = content;
-            
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-            
-            // Close modal when clicking outside
-            modal.onclick = (e) => {
-                if (e.target === modal) closeModal();
-            };
-        }
-        
-
-        // Initialize the skills section as expanded by default
-        document.addEventListener('DOMContentLoaded', () => {
-            const content = document.querySelector('.skills-content');
-            const arrow = document.querySelector('.skills-toggle');
-
-            content.classList.add('active');
-            arrow.classList.add('active');
-
-            initializeProjectCards();
         });
-        // Function to close the modal
-        function closeModal() {
-            const modal = document.getElementById('modalOverlay');
+
+        // Smooth Scrolling for Projects
+        const projectsContainer = document.querySelector('.projects-container');
+        let isScrolling = false;
+        let startX;
+        let scrollLeft;
+
+        projectsContainer.addEventListener('mousedown', (e) => {
+            isScrolling = true;
+            startX = e.pageX - projectsContainer.offsetLeft;
+            scrollLeft = projectsContainer.scrollLeft;
+        });
+
+        projectsContainer.addEventListener('mouseleave', () => {
+            isScrolling = false;
+        });
+
+        projectsContainer.addEventListener('mouseup', () => {
+            isScrolling = false;
+        });
+
+        projectsContainer.addEventListener('mousemove', (e) => {
+            if (!isScrolling) return;
+            e.preventDefault();
+            const x = e.pageX - projectsContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            projectsContainer.scrollLeft = scrollLeft - walk;
+        });
+
+        // Description Modal Functionality
+        const modal = document.querySelector('.description-modal');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        const modalTitle = modal.querySelector('.project-title');
+        const modalDescription = modal.querySelector('.full-description');
+
+        document.querySelectorAll('.see-more').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const projectCard = e.target.closest('.project-card');
+                const title = projectCard.querySelector('.project-title').textContent;
+                const description = projectCard.querySelector('.project-description').textContent;
+
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modal.style.display = 'block';
+                modalOverlay.style.display = 'block';
+            });
+        });
+
+        document.querySelector('.modal-close').addEventListener('click', () => {
             modal.style.display = 'none';
-            document.body.style.overflow = ''; // Restore scrolling
-        }
-
-        // Initialize when the page loads
-       // document.addEventListener('DOMContentLoaded', initializeProjectCards);
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+            modalOverlay.style.display = 'none';
         });
 
-        function openContactModal() {
-            const modal = document.getElementById('contactModalOverlay');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-
-            modal.onclick = (e) => {
-                if (e.target === modal) closeContactModal();
-            };
-        }
-
-        function closeContactModal() {
-            const modal = document.getElementById('contactModalOverlay');
+        modalOverlay.addEventListener('click', () => {
             modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeProjectCards();
+            modalOverlay.style.display = 'none';
         });
-        // Update the existing event listener to handle both modals
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                closeContactModal();
+
+        // Contact Panel Functionality
+        const contactLink = document.querySelector('a[href="#"].header-link:last-child');
+        const contactPanel = document.querySelector('.contact-panel');
+
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactPanel.style.display = contactPanel.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!contactPanel.contains(e.target) && !contactLink.contains(e.target)) {
+                contactPanel.style.display = 'none';
             }
         });
-    </script>
+
+        // Copy Functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', async () => {
+                const textToCopy = button.dataset.copy;
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    const feedback = button.parentElement.querySelector('.copy-feedback');
+                    feedback.style.opacity = '1';
+                    setTimeout(() => {
+                        feedback.style.opacity = '0';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
+            });
+        });</script>
 </body>
 </html>
