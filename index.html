@@ -311,7 +311,16 @@
                 color: var(--accent-color);
                 font-size: 1.2rem;
             }
-
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-color), var(--accent-color));
+            width: 0%;
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
         .copy-btn {
             position: absolute;
             right: 0.8rem;
@@ -339,7 +348,37 @@
             opacity: 0;
             transition: opacity var(--transition-speed);
         }
+        .project-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 1rem 0;
+        }
 
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+            .stat-item i {
+                color: var(--accent-color);
+                font-size: 1.2rem;
+            }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
         .project-tags {
             display: flex;
             flex-wrap: wrap;
@@ -430,6 +469,7 @@
     </style>
 </head>
 <body>
+    <div class="scroll-progress"></div>
     <header>
         <div class="header-content">
             <a href="Prateek_CV.pdf" class="header-link">
@@ -517,6 +557,96 @@
                 <div class="panel-content">
                     <div class="projects-container">
                         <div class="project-card">
+                            <img src="GDS/rescuerift.jpg" alt="Rescue Rift" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Rescue Rift</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom hostage AIs with different states (Idle, Flee, Being Hostage), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">AI States</span>
+                                    <span class="project-tag">Mission System</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://www.y8.com/games/rescue_rift'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <img src="GDS/zombieisland.jpg" alt="Zombie Island" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Zombie Island</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">Enemy AI</span>
+                                    <span class="project-tag">Patrol System</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/zombie-island-3d/'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <img src="GDS/skibidi.jpg" alt="Skibidi Toilet Mayhem" class="project-image">
+                            <div class="project-info">
+                                <h3 class="project-title">Skibidi Toilet Mayhem</h3>
+                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
+                                <span class="see-more">See more...</span>
+                                <div class="project-tags">
+                                    <span class="project-tag">Unity 3D</span>
+                                    <span class="project-tag">FPS</span>
+                                    <span class="project-tag">Enemy AI</span>
+                                    <span class="project-tag">Mission System</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="btn btn-primary" onclick="window.location.href='https://www.y8.com/games/skibidi_toilet_mayhem'">Play Now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card">
                             <img src="GDS/mayhem.png" alt="Mayhem Platformer" class="project-image">
                             <div class="project-info">
                                 <h3 class="project-title">Mayhem Platformer</h3>
@@ -526,6 +656,19 @@
                                     <span class="project-tag">Unity 2D</span>
                                     <span class="project-tag">AI Movement</span>
                                     <span class="project-tag">State Management</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
                                 </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://outscal.com/prateektomar005/game/play-mayhem-platformer-1-game'">Play Now</button>
@@ -544,6 +687,19 @@
                                     <span class="project-tag">Unity 2D</span>
                                     <span class="project-tag">Power-ups</span>
                                     <span class="project-tag">Co-op Gameplay</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
                                 </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://outscal.com/prateektomar005/game/play-co-op-snake-7-game'">Play Now</button>
@@ -565,6 +721,19 @@
                                     <span class="project-tag">State Management</span>
                                     <span class="project-tag">UI Systems</span>
                                 </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
+                                </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://outscal.com/prateektomar005/game/play-bike-ghost-hunter-2d-game'">Play Now</button>
                                     <button class="btn btn-secondary" onclick="window.location.href='https://github.com/prateektomar123/BikeGhostHunters2D'">View Source</button>
@@ -585,6 +754,19 @@
                                     <span class="project-tag">Level Design</span>
                                     <span class="project-tag">Vehicle Controls</span>
                                 </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
+                                </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/pursUIt-rampage/'">Play Now</button>
                                 </div>
@@ -592,43 +774,7 @@
                         </div>
 
                         <!-- Project 5 -->
-                        <div class="project-card">
-                            <img src="GDS/rescuerift.jpg" alt="Rescue Rift" class="project-image">
-                            <div class="project-info">
-                                <h3 class="project-title">Rescue Rift</h3>
-                                <p class="project-description truncated">A first-person shooting game, created custom hostage AIs with different states (Idle, Flee, Being Hostage), implemented a mission manager.</p>
-                                <span class="see-more">See more...</span>
-                                <div class="project-tags">
-                                    <span class="project-tag">Unity 3D</span>
-                                    <span class="project-tag">FPS</span>
-                                    <span class="project-tag">AI States</span>
-                                    <span class="project-tag">Mission System</span>
-                                </div>
-                                <div class="project-buttons">
-                                    <button class="btn btn-primary" onclick="window.location.href='https://www.y8.com/games/rescue_rift'">Play Now</button>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Project 6 -->
-                        <div class="project-card">
-                            <img src="GDS/zombieisland.jpg" alt="Zombie Island" class="project-image">
-                            <div class="project-info">
-                                <h3 class="project-title">Zombie Island</h3>
-                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                                <span class="see-more">See more...</span>
-                                <div class="project-tags">
-                                    <span class="project-tag">Unity 3D</span>
-                                    <span class="project-tag">FPS</span>
-                                    <span class="project-tag">Enemy AI</span>
-                                    <span class="project-tag">Patrol System</span>
-                                </div>
-                                <div class="project-buttons">
-                                    <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/zombie-island-3d/'">Play Now</button>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Project 7 -->
                         <div class="project-card">
                             <img src="GDS/abandonedlab.png" alt="Abandoned Lab" class="project-image">
@@ -641,6 +787,19 @@
                                     <span class="project-tag">FPS</span>
                                     <span class="project-tag">AI Behavior</span>
                                     <span class="project-tag">Mission System</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
                                 </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/abandoned-lab/'">Play Now</button>
@@ -661,6 +820,19 @@
                                     <span class="project-tag">Performance Optimization</span>
                                     <span class="project-tag">Game Mechanics</span>
                                 </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
+                                </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/highway-bus-rush/'">Play Now</button>
                                 </div>
@@ -668,24 +840,6 @@
                         </div>
 
                         <!-- Project 9 -->
-                        <div class="project-card">
-                            <img src="GDS/skibidi.jpg" alt="Skibidi Toilet Mayhem" class="project-image">
-                            <div class="project-info">
-                                <h3 class="project-title">Skibidi Toilet Mayhem</h3>
-                                <p class="project-description truncated">A first-person shooting game, created custom enemy AIs with different states (Idle, Attacking, Patrolling), implemented a mission manager.</p>
-                                <span class="see-more">See more...</span>
-                                <div class="project-tags">
-                                    <span class="project-tag">Unity 3D</span>
-                                    <span class="project-tag">FPS</span>
-                                    <span class="project-tag">Enemy AI</span>
-                                    <span class="project-tag">Mission System</span>
-                                </div>
-                                <div class="project-buttons">
-                                    <button class="btn btn-primary" onclick="window.location.href='https://www.y8.com/games/skibidi_toilet_mayhem'">Play Now</button>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Project 10 -->
                         <div class="project-card">
                             <img src="GDS/societyfps.jpg" alt="Society FPS" class="project-image">
@@ -698,6 +852,19 @@
                                     <span class="project-tag">FPS</span>
                                     <span class="project-tag">AI States</span>
                                     <span class="project-tag">Combat System</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
                                 </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/society-fps/'">Play Now</button>
@@ -717,6 +884,19 @@
                                     <span class="project-tag">Endless Runner</span>
                                     <span class="project-tag">Shop System</span>
                                     <span class="project-tag">Performance Optimization</span>
+                                </div>
+                                <div class="project-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-download"></i>
+                                        <span class="stat-value">50K+</span>
+                                        <span class="stat-label">Plays</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-star"></i>
+                                        <span class="stat-value">4.8</span>
+                                        <span class="stat-label">Rating</span>
+                                    </div>
+
                                 </div>
                                 <div class="project-buttons">
                                     <button class="btn btn-primary" onclick="window.location.href='https://gamedistribution.com/games/glacier-rush/'">Play Now</button>
@@ -757,7 +937,8 @@
         </div>
     </div>
 
-    <script>// Panel Toggle Functionality
+    <script>
+    // Panel Toggle Functionality
         document.querySelectorAll('.panel-header').forEach(header => {
             header.addEventListener('click', () => {
                 const panel = header.parentElement;
@@ -857,6 +1038,14 @@
                     console.error('Failed to copy text: ', err);
                 }
             });
-        });</script>
+        });
+        // Scroll Progress Bar
+        window.onscroll = function () {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.querySelector(".scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
 </body>
 </html>
